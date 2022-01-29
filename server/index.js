@@ -22,4 +22,4 @@ app.listen(4000,() => console.log("Server is up and running"));
 
 app.get('/',(req,res) => res.json("Hello World"));
 
-export default app;git 
+export default app;

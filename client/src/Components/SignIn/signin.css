@@ -1,0 +1,18 @@
+.body{
+    height : 100vh;
+    background-color : #323232;
+  }
+  .login-box{
+    width : 25%;
+    height : 50%;
+    box-sizing : border-box; 
+    background-color : #54BAB9;
+    border-radius : 20px;
+  }
+  .signup-link{
+    color : #323232;
+    text-decoration : none;
+  }
+  .signup-link:hover{
+    color : #323232;
+  }

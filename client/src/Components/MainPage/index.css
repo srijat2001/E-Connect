@@ -1,0 +1,22 @@
+.body{
+    background-color : #323232;
+    height : 100vh;
+    width : 100%;
+}
+.index-img{
+    width : 700px;
+    height : 700px;
+}
+.index-header{
+    font-size : 100px;
+    font-weight : 500;
+    color : #54BAB9;
+}
+.index-caption{
+    font-size : 40px;
+    font-weight : 600;
+    color : #54BAB9;
+}
+.index-btn{
+    width : 150px;
+}

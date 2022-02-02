@@ -2,11 +2,14 @@ import {Link} from "react-router-dom";
 import './signup.css'
 import {useState} from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 const SignUp = () => {
+    const navigate = useNavigate();
     const [user,setuser] = useState({
         name : "",
         email : "",
-        password : ""
+        password : "",
+        errors : {}
     });
     const handleSubmit = async(e) => {
         try{
@@ -17,11 +20,15 @@ const SignUp = () => {
                 password : user.password
             }
             const userData = await axios.post('http://localhost:4000/api/user/signup',newUser);
-            console.log(userData.data.error);
+            console.log(userData);
+            navigate('/');
         } catch(err){
-            console.log(err);
+            const msg = err.response.data;
+            setuser({...user,errors:msg});
+            console.log(msg);
         }
     }
+    const {errors} = user;
     return(
         <>
             <div className="container-fluid d-flex justify-content-center align-items-center body">
@@ -31,14 +38,17 @@ const SignUp = () => {
                         <div className="mb-3">
                             <label className="form-label">Username</label>
                             <input type="text" className="form-control" onChange={(e)=>setuser({...user,name : e.target.value})}/>
+                            {errors.name &&<div className="error-display">{errors.name}</div>}
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email address</label>
                             <input type="email" className="form-control" onChange={(e)=>setuser({...user,email : e.target.value})}/>
+                            {errors.email && <div className="error-display">{errors.email}</div>}
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="password" className="form-control" onChange={(e)=>setuser({...user,password : e.target.value})}/>
+                            {errors.password && <div className="error-display">{errors.password}</div>}
                         </div>
                         <div className="d-flex justify-content-center p-4">
                             <button type="submit" className="btn btn-light" onClick={handleSubmit}>Sign Up</button>

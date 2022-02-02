@@ -17,8 +17,10 @@ Methods     - POST
 */
 Router.post('/signup',async(req,res)=>{
     try{
-        const {errors} = await ValidateSignUp(req.body);
-        if(errors.length > 0) return res.status(500).json(errors); 
+        const {errors,isValid} = await ValidateSignUp(req.body);
+        if(!isValid){
+            return res.status(500).json(errors); 
+        }
         const {name,email,password} = req.body;
         const checkuserbyEmail = await UserModel.findOne({email});
         if(checkuserbyEmail){
@@ -48,8 +50,10 @@ Methods     - POST
 */
 Router.post('/signin',async(req,res)=>{
     try{
-        const {errors} = await ValidateSignIn(req.body);
-        if(Object.keys(errors).length > 0) return res.status(400).json(errors); 
+        const {errors,isValid} = await ValidateSignIn(req.body);
+        if(!isValid){
+            return res.status(500).json(errors); 
+        }
         const {email,password} = req.body;
         const user = await UserModel.findOne({email});
         //res.json({user : user});

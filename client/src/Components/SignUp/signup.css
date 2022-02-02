@@ -2,6 +2,14 @@
     height : 100vh;
     background-color : #323232;
   }
+.error-display{
+  font-size :15px;
+  color : red;
+}
+.invalid-feedback{
+  font-size :15px;
+  color : red;
+}
   .signup-box{
     width : 25%;
     height : 60%;

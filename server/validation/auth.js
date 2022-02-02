@@ -1,5 +1,11 @@
 import validator from 'validator';
 
+const is_empty = (value) => {
+    return (value === undefined || value === null ||
+    (typeof(value) === 'object' && Object.keys(value).length === 0) ||
+    (typeof(value) === 'string' && value.trim().length === 0));
+}
+
 export const ValidateSignUp = (data) => {
     let errors = {};
     if(!validator.isLength(data.name,{min : 5,max:30})){
@@ -20,7 +26,7 @@ export const ValidateSignUp = (data) => {
     if(!validator.isLength(data.password,{min : 6,max:30})){
         errors.password = "password must be atleast 6 characters";
     }
-    return errors;        
+    return { errors, isValid : is_empty(errors) };        
 }
 
 export const ValidateSignIn = (data) => {
@@ -35,5 +41,5 @@ export const ValidateSignIn = (data) => {
     if(validator.isEmpty(data.password)){
         errors.password = "password field is required";
     }
-    return errors;
+    return {errors,isValid : is_empty(errors)};
 }

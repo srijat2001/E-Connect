@@ -18,9 +18,12 @@ const SignIn = () =>{
                 password : user.password
             }
             const UserData = await axios.post('http://localhost:4000/api/user/signin',newUser);
-            console.log(UserData.data);   
-        } catch(e){
-            setuser({errors : e});
+            console.log(UserData);  
+            navigate('/home');
+        } catch(err){
+            const msg = err.response.data;
+            setuser({...user,errors : msg});
+            console.log(msg);
         }
     }
     const {errors} = user;
@@ -33,12 +36,12 @@ const SignIn = () =>{
                         <div className="mb-3">
                             <label className="form-label">Email address</label>
                             <input type="email" className="form-control" onChange={(e)=>setuser({...user,email : e.target.value})}/>
-                            {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                            {errors.email && <div className="error-display">{errors.email}</div>}
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="password" className="form-control" onChange={(e)=>setuser({...user,password : e.target.value})}/>
-                            {errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
+                            {errors.password && <div className="error-display">{errors.password}</div>}
                         </div>
                         <div className="d-flex justify-content-center p-4">
                             <button type="submit" className="btn btn-light" onClick={handleSubmit}>Sign In</button>

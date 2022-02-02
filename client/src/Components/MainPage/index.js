@@ -1,4 +1,3 @@
-import react from 'react';
 import './index.css';
 import IndexLogo from '../../Assets/index.svg';
 import {useNavigate} from "react-router-dom";

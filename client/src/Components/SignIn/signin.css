@@ -16,3 +16,7 @@
   .signup-link:hover{
     color : #323232;
   }
+  .inavlid-feedback{
+    font-size : 10px;
+    color : red;
+  }

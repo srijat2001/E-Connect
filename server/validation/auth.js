@@ -1,17 +1,39 @@
-import joi from 'joi';
-export const ValidateSignUp = (UserData) => {
-    const user = joi.object({
-        name : joi.string().required().min(5),
-        email : joi.string().required().email(),
-        password : joi.string().required().min(5)
-    })
-    return user.validateAsync(UserData);
+import validator from 'validator';
+
+export const ValidateSignUp = (data) => {
+    let errors = {};
+    if(!validator.isLength(data.name,{min : 5,max:30})){
+        errors.name = "Name must be between 5 and 30 characters";
+    }
+    if(validator.isEmpty(data.name)){
+        errors.name = "Name field is required";
+    }
+    if(validator.isEmpty(data.email)){
+        errors.email = "Email field is required";
+    }
+    if(!validator.isEmail(data.email)){
+        errors.email = "Email is invalid";
+    }
+    if(validator.isEmpty(data.password)){
+        errors.password = "password field is required";
+    }
+    if(!validator.isLength(data.password,{min : 6,max:30})){
+        errors.password = "password must be atleast 6 characters";
+    }
+    return errors;        
 }
 
-export const ValidateSignIn = (UserData) => {
-    const user = joi.object({
-        email : joi.string().required().email(),
-        password : joi.string().required().min(5)
-    })
-    return user.validateAsync(UserData);    
+export const ValidateSignIn = (data) => {
+    let errors = {};
+
+    if(!validator.isEmail(data.email)){
+        errors.email = "Email is invalid";
+    }
+    if(validator.isEmpty(data.email)){
+        errors.email = "Email field is required";
+    }
+    if(validator.isEmpty(data.password)){
+        errors.password = "password field is required";
+    }
+    return errors;
 }

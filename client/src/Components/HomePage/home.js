@@ -1,6 +1,5 @@
 import './home.css';
 import {Link} from "react-router-dom";
-import MainPage from "../MainPage/index";
 import HomeImage from "../../Assets/home.svg"
 const Home = () => {
     return(

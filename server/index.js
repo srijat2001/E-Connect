@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 
@@ -12,11 +13,12 @@ Connectdb();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(cors());
 
 
 //routes
-import UserRoute from './routes/user';
-app.use(UserRoute);
+import Users from './routes/user';
+app.use('/api/user',Users)
 
 app.listen(4000,() => console.log("Server is up and running"));
 

@@ -11,18 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.1",
+    "body-parser": "^1.19.2",
     "brcypt": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^14.3.2",
-    "express": "^4.17.2",
-    "mongoose": "^6.1.8",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.6",
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.12",
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.7",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "nodemon": "^2.0.15"
